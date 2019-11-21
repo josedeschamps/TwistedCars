@@ -3,7 +3,7 @@ Portable project / IOS_Android
 2020 June
 
 Refences
-![GitHub Logo](/images/logo.png)
+![alt text](http://url/to/img.png)
 Format: ![Alt Text](url)
 
 
