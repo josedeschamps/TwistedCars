@@ -4,7 +4,7 @@ Portable project / IOS_Android
 
 Refences
 ![alt text](http://url/to/img.png)
-Format: ![Alt Text](url)
+
 
 
 
