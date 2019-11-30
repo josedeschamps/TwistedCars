@@ -18,10 +18,14 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody RB;
     private string movementAxisName;
     private string turnAxisName;
+    [SerializeField]
+    private FloatingJoystick joystick;
+   
 
     //player inputs names
     private float movementInputValue;
     private float turnInputValue;
+    private float movementJoystickValue;
     private string boostInputName;
     private string shootInputName;
     //private float originalPitch;
@@ -67,8 +71,12 @@ public class PlayerController : MonoBehaviour {
 
         shootInputName = "Shoot" + m_PlayerNumber;
         boostInputName = "Boost" + m_PlayerNumber;
-        movementAxisName = "Vertical"; 
-        turnAxisName = "Horizontal"; 
+        movementAxisName = "Vertical";
+        turnAxisName = "Horizontal";
+
+        joystick = FindObjectOfType<FloatingJoystick>();
+        //movementAxisName = "Vertical"; 
+        //turnAxisName = "Horizontal"; 
 
 
        
@@ -142,6 +150,8 @@ public class PlayerController : MonoBehaviour {
         //movement inputs
         movementInputValue = Input.GetAxis(movementAxisName);
         turnInputValue = Input.GetAxis(turnAxisName);
+        movementJoystickValue = joystick.Vertical;
+      
     }
 
 
@@ -151,6 +161,7 @@ public class PlayerController : MonoBehaviour {
 
         Move();
         Turn();
+        JoystickMove();
     }
 
     private void Move()
@@ -158,6 +169,13 @@ public class PlayerController : MonoBehaviour {
 
 
         Vector3 movement = transform.forward * movementInputValue * movementSpeed * Time.deltaTime;
+        RB.MovePosition(RB.position + movement);
+
+    }
+
+    private void JoystickMove()
+    {
+        Vector3 movement = transform.forward * movementJoystickValue * movementSpeed * Time.deltaTime;
         RB.MovePosition(RB.position + movement);
 
     }
